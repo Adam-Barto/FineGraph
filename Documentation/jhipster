@@ -1,0 +1,67 @@
+enum TypeOfPayment {
+	CHECK,
+    	MASTERCARD,
+    	VISA,
+
+        OTHER //Error Handling
+}
+enum TypeOfCategory {
+	ENTERTAINMENT,
+    	FOOD,
+    	CHARITY,
+    	HEALTH,
+    	EDUCATION,
+    	OTHER
+    	//Other means Not defined
+}
+
+entity DataBase {
+	amount Column required,
+    data Column required,
+    paidfromDigits Column required,
+	paidfromName Column required,
+	catagory Column required,
+}
+
+entity Datapoint {
+    id Integer,
+    userId Integer,
+    // Amount Paid
+    amount Float,
+
+    // Time of Payment
+    date DateTime,
+
+    // The type of payment method used.
+    paymentType TypeOfPayment,
+
+    // Can be last digits of the card or a check number
+    paymentFrom Integer,
+
+    // Category of Payment
+    category TypeOfCategory
+
+}
+entity User {
+	id Integer,
+    lastName String,
+    firstName String,
+    email String,
+    phone String,
+    age Integer,
+    datapoints Datapoints
+}
+
+
+relationship ManyToOne {
+	Datapoint to DataBase{Datapoint}
+}
+
+relationship OneToOne {
+MakeDatapoint{Datapoint} to Datapoint,
+  	DataBase{makegraph} to MakeGraph,
+   	 DataBase{sort} to ExploreData,
+    	ImportDataBase{Scheme} to TranslateToDataBase,
+    	TranslateToDataBase{Scheme} to DataBase
+        Datapoint to User
+}

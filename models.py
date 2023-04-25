@@ -23,6 +23,10 @@ class TypeOfCategory(Enum):
 
 
 class DataPoint(db.Model):
+    __tablename__ = "datapoint"
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+
     # Amount Paid
     amount = db.Column(db.Float, primary_key=True)
 
@@ -36,9 +40,34 @@ class DataPoint(db.Model):
     payment_from = db.Column(db.Integer, primary_key=True)
 
     # Category of Payment
-    category = db.Column(db.TypeOfCatagory)
+    category = db.Column(db.TypeOfCategory)
 
 
-# class DataBase(ma.SQLAlchemyAutoSchema):
-#     class Meta:
+class User(db.Model):
+    __tablename__ = "user"
+    id = db.Column(db.Integer, primary_key=True)
+    last_name = db.Column(db.String(32), nullable=False)
+    first_name = db.Column(db.String(32))
 
+    datapoints = db.relationship(
+        DataPoint,
+        backref="user",
+        single_parent=True
+    )
+
+
+class DataBase(ma.SQLAlchemyAutoSchema):
+    class Meta:
+        model = DataPoint
+        # load_instance = True
+        # sqla_session = db.session
+        # include_fk = True
+
+
+class UserSchema(ma.SQLAlchemyAutoSchema):
+    class Meta:
+        model = User
+        load_instance = True
+
+
+database_schema = DataBase()
