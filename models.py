@@ -43,6 +43,14 @@ class DataPoint(db.Model):
     category = db.Column(db.Enum)
 
 
+class DataSchema(ma.SQLAlchemyAutoSchema):
+    class Meta:
+        model = DataPoint
+        load_instance = True
+        sqla_session = db.session
+        include_fk = True
+
+
 class User(db.Model):
     __tablename__ = "user"
     id = db.Column(db.Integer, primary_key=True)
@@ -52,22 +60,21 @@ class User(db.Model):
     datapoints = db.relationship(
         DataPoint,
         backref="user",
+        cascade="all, delete, delete-orphan",
         single_parent=True
     )
-
-
-class DataBase(ma.SQLAlchemyAutoSchema):
-    class Meta:
-        model = DataPoint
-        # load_instance = True
-        # sqla_session = db.session
-        # include_fk = True
 
 
 class UserSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
         model = User
         load_instance = True
+        sqla_session = db.session
+        include_relationships = True
+
+    datapoints = fields.Nested(DataSchema, many=True)
 
 
-database_schema = DataBase()
+database_schema = DataSchema()
+user_schema = UserSchema()
+users_schema = UserSchema(many=True)

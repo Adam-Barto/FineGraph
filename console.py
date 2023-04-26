@@ -1,23 +1,7 @@
-import pathlib
-import sqlite3
-
-import models
+import app
 from datapoints import create
+from users import create as user_create
 import pandas as pd
-basedir = pathlib.Path(__file__).parent.resolve().parent
-
-# Makes the Database if it doesn't exist, or connects to it.
-# db = sqlite3.connect(f"{basedir / 'dataset.db'}")
-# sql = '''
-#           CREATE TABLE IF NOT EXISTS datapoints (
-#           payment_type TEXT NOT NULL,
-#           payment_from INTEGER NOT NULL,
-#           amount FLOAT NOT NULL,
-#           date TEXT NOT NULL,
-#           category INTEGER NOT NULL
-#           );
-#         '''
-# db.execute(sql)
 def graph():
     pass
 
@@ -25,14 +9,19 @@ def graph():
 def menu():
     print('\033[35m'
           '1. Create Datapoint\n'
-          '2. Display Graph\n')
+          '2. Display Graph\n'
+          '3. Make User\n')
+
     user_selection = input('Select Option: ')
     # This is where we would put an error handler for user_selection
     if user_selection == '1':
-        create(models.DataPoint)
+        create(app.DataPoint)
     elif user_selection == '2':
         # graph()
-        print(pd.read_sql("SELECT * FROM datapoints", db))
-
+        print("Lol")
+    elif user_selection == '3':
+        user = {'last_name':'Bethla', 'first_name':'Lucus','datapoints':[]}
+        user_create(user)
 
 menu()
+
