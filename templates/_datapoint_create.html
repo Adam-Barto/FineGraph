@@ -1,0 +1,36 @@
+<form>
+    <input name="user_id" type="hidden" value="{{ user.id }}" />
+    <label>
+        <!--Can we move this into a function that constructs it.-->
+        <span>Payment Type:</span>
+        <select name="content" id="payment_type"/>
+            <option value="OTHER">None</option>
+            <option value="CHECK">Check</option>
+            <option value="VISA">Visa</option>
+            <option value="MASTERCARD">MasterCard</option>
+<!--            <option value="OTHER">Other</option>-->
+        </select>
+
+        <span>Last Four Digits Of The Check or Card</span>
+        <input name="digits" type="text" value="" pattern="([0-9]{4})" />
+
+        <span>Amount:</span>
+        <input name="amount" type="text" value="" />
+
+        <span>Date:</span>
+        <input name="date" type="date" value="" />
+
+        <span>Category:</span>
+        <select name="content" id="category" />
+            <option value="OTHER">None</option>
+            <option value="FOOD">Food</option>
+            <option value="HEALTH">Health</option>
+            <option value="EDUCATION">Education</option>
+            <option value="ENTERTAINMENT">Entertainment</option>
+            <option value="CHARITY">Charity</option>
+<!--            <option value="OTHER">Other</option>-->
+        </select>
+
+    </label>
+    <button data-action="create">Add Datapoint</button>
+</form>
