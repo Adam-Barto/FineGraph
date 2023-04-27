@@ -14,6 +14,6 @@ ma = Marshmallow(app)
 from console import menu
 with app.app_context():
     db.create_all()
-    if app.debug:
-        menu()
-
+    # print(app.debug) # This is false because the code isn't running yet.
+    # if app.debug:
+    menu()

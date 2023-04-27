@@ -3,7 +3,7 @@ from config import app
 
 from models import User, DataPoint
 
-ARE_WE_DEBUGGING = False
+
 @app.route("/")
 def home():
     user = User.query.all()  # Maybe see about only exporting the user you care about?
@@ -15,9 +15,8 @@ def home():
 #     datapoints = DataPoint.query.all()
 #     return render_template("graph.html", datapoints=datapoints)
 def activate():
-    app.run(host="0.0.0.0", port=8000, debug=ARE_WE_DEBUGGING)
+    app.run(host="0.0.0.0", port=8000, debug=True)
 
 
 if __name__ == "__main__":
     activate()
-
