@@ -11,4 +11,9 @@ app.config.update(
 )
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
+from console import menu
+with app.app_context():
+    db.create_all()
+    if app.debug:
+        menu()
 

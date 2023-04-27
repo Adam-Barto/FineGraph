@@ -1,7 +1,4 @@
-import json
-
 from flask import abort, make_response
-
 from config import db
 from models import User, users_schema, user_schema
 
@@ -10,7 +7,7 @@ def read_all():
     return users_schema.dump(user)
 
 
-def create(user):
+def create(user): # Accepts JSON
     new_user = user_schema.load(user, session=db.session)
     db.session.add(new_user)
     db.session.commit()

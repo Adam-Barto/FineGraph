@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <title>Fine Graph</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script
+        src="{{ url_for('static', filename='js/index.js') }}"
+        type="module"
+    ></script>
 </head>
 <body>
     <h1>
@@ -17,5 +21,9 @@
             type="button">
         Create a new Datapoint!
     </button>
+
+    <div class="display_datapoints">
+        {% include "_display_datapoints.html" %}
+    </div>
 </body>
 </html>
