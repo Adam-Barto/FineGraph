@@ -27,17 +27,16 @@ class DataPoint(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
 
+    # The type of payment method used.
+    payment_type = db.Column(db.Enum, primary_key=True)
+    # Can be last digits of the card or a check number
+    payment_from = db.Column(db.Integer, primary_key=True)
+
     # Amount Paid
     amount = db.Column(db.Float, primary_key=True)
 
     # Time of Payment
     date = db.Column(db.DateTime)
-
-    # The type of payment method used.
-    payment_type = db.Column(db.Enum, primary_key=True)
-
-    # Can be last digits of the card or a check number
-    payment_from = db.Column(db.Integer, primary_key=True)
 
     # Category of Payment
     category = db.Column(db.Enum)
