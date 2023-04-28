@@ -28,18 +28,18 @@ class DataPoint(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
 
     # The type of payment method used.
-    payment_type = db.Column(db.Enum, primary_key=True)
+    payment_type = db.Column(db.Enum, nullable=False)
     # Can be last digits of the card or a check number
-    payment_from = db.Column(db.Integer, primary_key=True)
+    payment_from = db.Column(db.Integer, nullable=False)
 
     # Amount Paid
-    amount = db.Column(db.Float, primary_key=True)
+    amount = db.Column(db.Float, nullable=False)
 
     # Time of Payment
-    date = db.Column(db.DateTime)
+    date = db.Column(db.DateTime, nullable=False)
 
     # Category of Payment
-    category = db.Column(db.Enum)
+    category = db.Column(db.Enum, nullable=False)
 
 
 class DataSchema(ma.SQLAlchemyAutoSchema):
