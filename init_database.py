@@ -1,7 +1,7 @@
 from sqlalchemy.exc import OperationalError
 from datetime import datetime
 from config import app, db
-from models import DataPoint, User, TypeOfPayment, TypeOfCategory
+from models import DataPoint, User
 
 TEST_USER = [
     {
