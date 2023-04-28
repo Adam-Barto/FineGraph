@@ -3,7 +3,7 @@ import { sendForm } from "./request.js";
 export class Datapoints {
     constructor() {
         this.create = document.querySelectorAll("create-datapoint")
-        this.all
+        this.allDatapoints
 
     }
     activateAllCreateForms() {
@@ -30,5 +30,12 @@ export class DatapointCreateForm {
 
     addDatapoint(rawData) {
     const data = JSON.parse(rawData);
+    console.log(data)
+    user_id = data.querySelector(".create-datapoint")
+    new_datapoint.querySelector(".paymentType").textContent = data.value
+    new_datapoint.querySelector(".digits").textContent = data.value
+    new_datapoint.querySelector(".amount").textContent = data.value
+    new_datapoint.querySelector(".date").textContent = data.value
+    new_datapoint.querySelector(".category").textContent = data.value
     }
 }
