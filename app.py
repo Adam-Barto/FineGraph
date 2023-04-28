@@ -1,5 +1,5 @@
 from flask import render_template, current_app
-from config import app
+from config import app, setup
 
 from models import User, DataPoint
 
@@ -15,6 +15,7 @@ def home():
 #     datapoints = DataPoint.query.all()
 #     return render_template("graph.html", datapoints=datapoints)
 def activate():
+    setup()
     app.run(host="0.0.0.0", port=8000, debug=True)
 
 

@@ -11,9 +11,10 @@ app.config.update(
 )
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
-from console import menu
-with app.app_context():
-    db.create_all()
-    # print(app.debug) # This is false because the code isn't running yet.
-    # if app.debug:
-    menu()
+
+def setup():
+    from console import menu
+    with app.app_context():
+        db.create_all()
+        menu()
+
