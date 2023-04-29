@@ -8,9 +8,13 @@ TEST_USER = [
         "last_name": "Doe",
         "first_name": "John",
         "datapoints": [
-            (2, 1234, 25.90, '05-03-2022', 3),
-            (1, 7456, 232.13, '01-31-2012', 4),
-            (0, 2398, 123.90, '12-05-2002', 1)
+            {
+                "payment_type": 2,
+                "payment_from": 1234,
+                "amount": 25.90,
+                "date": '05-03-2022',
+                "category": 1
+            }
         ]
 
     }
