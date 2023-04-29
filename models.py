@@ -32,7 +32,7 @@ class DataPoint(db.Model):
     amount = db.Column(db.Float, nullable=False)
 
     # Time of Payment
-    date = db.Column(db.DateTime, nullable=False)
+    date = db.Column(db.VARCHAR(32), nullable=False)
 
     # Category of Payment
     category = db.Column(db.VARCHAR(32), nullable=False)
