@@ -25,7 +25,7 @@ def build_datapoint():
     # Category of Payment
     [print(f'\033[35m {key}. {value} \033[0m') for (key, value) in TypeOfCategory_Dict.items()]
     category = input('\033[35m Your Choice: \033[0m')
-    return '{'+f'"payment_type": {payment_type}, "payment_from": {payment_from}, "amount": {amount}, "date": {date}, "category": {category}'+'}'
+    return '{'+f'"user_id": "1", "payment_type": "{payment_type}", "payment_from": "{payment_from}", "amount": "{amount}", "date": "{date}", "category": "{category}"'+'}'
 
 
 
