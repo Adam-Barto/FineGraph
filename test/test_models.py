@@ -4,7 +4,7 @@ import users
 import datapoints
 import pandas as pd
 from config import app, basedir, db
-from models import User, DataPoint
+from models import User, DataPoint, TypeOfPayment_Dict, TypeOfCategory_Dict
 
 
 def setup_test_database():
@@ -27,25 +27,30 @@ class Test(TestCase):
             actual = users.read_one(new_user[0].get('id')).get('last_name')
             expected = 'Test'
             self.assertEqual(expected, actual)
-            users.delete(new_user[0].get('id'))
+            users.delete(new_user[0].get('id')) # Clean up after itself.
 
     def test_datapoint_creation(self):
         setup_test_database()
         with app.app_context():
             db.create_all()
-            payment_type = 'Visa'
-            payment_from = '1234'
-            amount = '123.45'
-            date = '02-03-2009'
-            category = 'Food'
-            test_datapoints = json.loads(
-                '{' + f'"payment_type": {payment_type}, "payment_from": {payment_from}, "amount": {amount}, "date": {date}, "category": {category}' + '}'
+            payment_type = TypeOfPayment_Dict.get(1)
+            payment_from = "1234"
+            amount = "123.45"
+            date = "02-03-2009"
+            category = TypeOfCategory_Dict.get(1)
+            test_datapoint = json.loads(
+                '{' + f'"user_id": "1",'
+                      f' "payment_type": "{payment_type}",'
+                      f' "payment_from": "{payment_from}",'
+                      f' "amount": "{amount}",'
+                      f' "date": "{date}",'
+                      f' "category": "{category}"' + '}'
             )
-            datapoint_count = pd.DataFrame(datapoints.read_data()).id.count()
-            expected = datapoint_count + 1
-            users.create(test_datapoints)
-            actual = pd.DataFrame(datapoints.read_all()).id.count()
+            new_datapoint = datapoints.create(test_datapoint)
+            actual = datapoints.read_data(new_datapoint[0].get('id')).get('payment_type')
+            expected = 'Check'
             self.assertEqual(expected, actual)
+            datapoints.delete(new_datapoint[0].get('id')) # Clean up after itself.
 
     def test_print_dataset(self):
         setup_test_database()
