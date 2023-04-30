@@ -2,6 +2,7 @@ import json
 from unittest import TestCase
 import users
 import datapoints
+from graphs import graph
 import pandas as pd
 from config import app, basedir, db
 from models import User, DataPoint, TypeOfPayment_Dict, TypeOfCategory_Dict
@@ -52,22 +53,25 @@ class Test(TestCase):
             self.assertEqual(expected, actual)
             datapoints.delete(new_datapoint[0].get('id')) # Clean up after itself.
 
-    def test_print_dataset(self):
+    # def test_print_dataset(self):
+    #     setup_test_database()
+    #     with app.app_context():
+    #         db.create_all()
+    #         df = pd.DataFrame(users.read_all())
+    #         print(df)
+    #         # df.drop_duplicates(subset='last_name')
+    #         # db.drop_all()
+    #
+    # def test_delete_database(self):
+    #     setup_test_database()
+    #     with app.app_context():
+    #         db.drop_all()
+
+    def test_graphs(self):
         setup_test_database()
         with app.app_context():
             db.create_all()
-            df = pd.DataFrame(users.read_all())
-            print(df)
-            # df.drop_duplicates(subset='last_name')
-            # db.drop_all()
-
-    def test_delete_database(self):
-        setup_test_database()
-        with app.app_context():
-            db.drop_all()
-
-    def test_data_base(self):
-        self.fail()
+            graph(1, 'date', 'Food')
 
     def test_user_schema(self):
         self.fail()
