@@ -14,7 +14,7 @@ def graph(user_id, y_values, x_values): # This will accept the database from the
                   "date",
                   "category"]
     df = pd.DataFrame(df.datapoints[0], columns=index_list)
-    x_val = df.loc[df['category'] == x_values]['category']
+    x_val = df.loc[df['category'] == x_values]['amount']
     y_val = df.loc[df['category'] == x_values][y_values]
     plt.plot(y_val, x_val, color='red', marker='o')
     plt.title(f'{x_values} vs {y_values}', fontsize=14)
