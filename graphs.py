@@ -22,3 +22,5 @@ def graph(user_id, y_values, x_values): # This will accept the database from the
     plt.ylabel(x_values, fontsize=14)
     plt.grid(True)
     plt.show()
+    return True
+
