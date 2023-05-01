@@ -1,6 +1,7 @@
 import json
 from datapoints import create, read_data
-from users import create as user_create, read_all
+from graphs import graph
+from users import create as user_create, read_all, read_one
 from models import db, TypeOfPayment_Dict, TypeOfCategory_Dict
 import pandas as pd
 
@@ -36,36 +37,41 @@ def build_user():
     return '{'+f'"last_name": "{last_name}", "first_name": "{first_name}", "datapoints": []'+'}'
 
 
-def graph():
-    pass
+def build_graph(user_id): # I can have this take the user Id for the generation process
+    [print(f'\033[35m {key}. {value} \033[0m') for (key, value) in TypeOfCategory_Dict.items()]
+    category_selected = input('\033[35m Your Choice: \033[0m')
+    print(TypeOfCategory_Dict.get(int(category_selected)))
+    graph(user_id, 'date', TypeOfCategory_Dict.get(int(category_selected)))
 
 
 def menu():
-    print('\033[35m'
-          '1. Create Datapoint\n'
-          '2. Display Graph\n'
-          '3. Make User\n'
-          '4. Display Data\n'
-          '\033[0m')
+    quit = True
+    while quit:
+        print('\033[35m'
+              '1. Create Datapoint\n'
+              '2. Display Graph\n'
+              '3. Make User\n'
+              '4. Display Data\n'
+              'Press Anything Else to Quit\n'
+              '\033[0m')
 
-    user_selection = input('Select Option: ')
-    # This is where we would put an error handler for user_selection
-    if user_selection == '1':
-        datapoints = build_datapoint()
-        datapoints = json.loads(datapoints)
-        create(datapoints)
-    elif user_selection == '2':
-        # graph()
-        lol = pd.DataFrame(read_all())
-        print(read_all())  # pulled from the function file of each one.
-        print(lol)
-    elif user_selection == '3':
-        user = build_user()# This lets us build the user, without using the Website
-        print(user)
-        user = json.loads(user)
-        user_create(user)
-    elif user_selection == '4':
-        lol = pd.DataFrame(read_all())
-        print(lol)
+        user_selection = input('Select Option: ')
+        # This is where we would put an error handler for user_selection
+        if user_selection == '1':
+            datapoints = build_datapoint()
+            datapoints = json.loads(datapoints)
+            create(datapoints)
+        elif user_selection == '2':
+            build_graph(1)
+        elif user_selection == '3':
+            user = build_user()# This lets us build the user, without using the Website
+            print(user)
+            user = json.loads(user)
+            user_create(user)
+        elif user_selection == '4':
+            lol = pd.DataFrame(read_all())
+            print(lol)
+        else:
+            quit = False
 
 # menu()
