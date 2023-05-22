@@ -78,12 +78,12 @@ class Test(TestCase):
         setup_test_database()
         with app.app_context():
             db.create_all()
-            for i in range(10):
+            for i in range(100):
                 payment_type = TypeOfPayment_Dict.get(randint(0, 3))
                 payment_from = f"{randint(1, 9)}{randint(0, 9)}{randint(0, 9)}{randint(0, 9)}"
                 amount = f"{randint(10, 50)}.{randint(00,99)}"
                 date = f"{randint(1, 12)}-{randint(1, 30)}-20{randint(0,10)}"
-                category = TypeOfCategory_Dict.get(1)
+                category = TypeOfCategory_Dict.get(randint(0, 5))
                 test_datapoint = json.loads(
                     '{' + f'"user_id": "1",'
                           f' "payment_type": "{payment_type}",'

@@ -3,11 +3,13 @@ from config import app, setup
 
 from models import User, DataPoint
 
-console_test = True
+console_test = False
+
+
 @app.route("/")
 def home():
-    user = User.query.all()  # Maybe see about only exporting the user you care about?
-    return render_template("home.html", user=user)
+    # user = User.query.all()  # Maybe see about only exporting the user you care about?
+    return render_template("baseline.html")  # Start it up.
 
 
 # @app.route("/Graph")

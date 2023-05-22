@@ -5,7 +5,7 @@ export function getData(endpoint, callback) {
       callback(request.response);
     }
   };
-  request.open("GET", endpoint);
+  request.open("GET", endpoint); //endpoint is the url target
   request.send();
 }
 

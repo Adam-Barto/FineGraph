@@ -3,27 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Fine Graph</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <script
-        src="{{ url_for('static', filename='js/index.js') }}"
-        type="module"
-    ></script>
+<!--    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<!--    <script-->
+<!--        src="{{ url_for('static', filename='js/index.js') }}"-->
+<!--        type="module"-->
+<!--    ></script>-->
 </head>
 <body>
     <h1>
         Welcome to Fine Graph!
     </h1>
-    <button class="Graph Data"
+    <button id="Graph Data"
             type="button">
         Graph the Data!
     </button>
-    <button class="Create Datapoint"
+    <button id="Create Datapoint"
             type="button">
         Create a new Datapoint!
     </button>
 
-    <div class="display_datapoints">
-        {% include "_display_datapoints.html" %}
-    </div>
+<!--    <div class="display_datapoints">-->
+<!--        {% include "_display_datapoints.html" %}-->
+<!--    </div>-->
 </body>
+
 </html>
